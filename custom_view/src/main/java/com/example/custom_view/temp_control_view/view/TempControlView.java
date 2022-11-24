@@ -37,6 +37,16 @@ public class TempControlView extends View {
     private Paint tempPaint;
     // 抗锯齿
     private PaintFlagsDrawFilter paintFlagsDrawFilter;
+    // 四格代表温度1度
+    private int angleRate = 4;
+    // 最高温度
+    private int maxTemp = 30;
+    // 最低温度
+    private int minTemp = 15;
+    // 温度
+    private int temperature = 15;
+    // 每格的角度
+    private float angleOne = (float) 270 / (maxTemp - minTemp) / angleRate;
 
 
     public TempControlView(Context context) {
@@ -79,7 +89,7 @@ public class TempControlView extends View {
 
         buttonPaint = new Paint();
 
-        paintFlagsDrawFilter = new PaintFlagsDrawFilter(0,Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
+        paintFlagsDrawFilter = new PaintFlagsDrawFilter(0, Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG);
 
         tempPaint = new Paint();
         tempPaint.setAntiAlias(true);
@@ -91,6 +101,12 @@ public class TempControlView extends View {
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
+        // 控件宽高
+        width = heigh = Math.min(w, h);
+        // 刻度盘半径
+        dialRadius = width / 2 - dp2px(20);
+        // 圆弧半径
+        arcRadius = dialRadius - dp2px(20);
     }
 
     @Override
@@ -101,6 +117,47 @@ public class TempControlView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        drawScale(canvas);
+        drawArc(canvas);
+        drawText(canvas);
+        drawButton(canvas);
+        drawTemp(canvas);
+    }
+
+    /**
+     * 绘制刻度盘
+     *
+     * @param canvas
+     */
+    private void drawScale(Canvas canvas) {
+        canvas.save();
+        canvas.translate(getWidth() / 2, getHeight() / 2);
+        // 顺时针旋转135-2度
+        canvas.rotate(133);
+        // 未达到的温度
+        dialPaint.setColor(Color.parseColor("#3CB7EA"));
+        for (int i = angleRate * maxTemp; i > angleRate * temperature; i--) {
+            canvas.drawLine(0, -dialRadius, 0, -dialRadius + scaleHeigh, dialPaint);
+            canvas.rotate(-angleOne);
+        }
+        // 已经达到的问题
+        dialPaint.setColor(Color.parseColor("#E37364"));
+        canvas.restore();
+    }
+
+    private void drawArc(Canvas canvas) {
+
+    }
+
+    private void drawText(Canvas canvas) {
+
+    }
+
+    private void drawButton(Canvas canvas) {
+
+    }
+
+    private void drawTemp(Canvas canvas) {
 
     }
 

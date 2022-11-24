@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.PaintFlagsDrawFilter;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -28,6 +29,14 @@ public class TempControlView extends View {
     private Paint arcPaint;
     // 标题画笔
     private Paint titlePaint;
+    // 温度标识画笔
+    private Paint tempFlagPaint;
+    // 旋转按钮画笔
+    private Paint buttonPaint;
+    // 温度显示画笔
+    private Paint tempPaint;
+    // 抗锯齿
+    private PaintFlagsDrawFilter paintFlagsDrawFilter;
 
 
     public TempControlView(Context context) {
@@ -62,6 +71,21 @@ public class TempControlView extends View {
         titlePaint.setStyle(Paint.Style.STROKE);
         titlePaint.setTextSize(sp2px(25));
 
+        tempFlagPaint = new Paint();
+        tempFlagPaint.setAntiAlias(true);
+        tempFlagPaint.setTextSize(dp2px(25));
+        tempFlagPaint.setColor(Color.parseColor("#E4A07E"));
+        tempFlagPaint.setStyle(Paint.Style.STROKE);
+
+        buttonPaint = new Paint();
+
+        paintFlagsDrawFilter = new PaintFlagsDrawFilter(0,Paint.ANTI_ALIAS_FLAG|Paint.FILTER_BITMAP_FLAG);
+
+        tempPaint = new Paint();
+        tempPaint.setAntiAlias(true);
+        tempPaint.setTextSize(sp2px(60));
+        tempPaint.setColor(Color.parseColor("#E27A3F"));
+        tempPaint.setStyle(Paint.Style.STROKE);
     }
 
     @Override
@@ -77,6 +101,7 @@ public class TempControlView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+
     }
 
     public int dp2px(float dp) {

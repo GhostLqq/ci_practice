@@ -8,3 +8,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "My Application"
 include ':custom_view'
+include ':third_lib'

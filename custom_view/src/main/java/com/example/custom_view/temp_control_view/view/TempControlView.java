@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PaintFlagsDrawFilter;
+import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -14,7 +15,7 @@ import androidx.annotation.Nullable;
 public class TempControlView extends View {
 
     // 控件高度
-    private int heigh;
+    private int height;
     // 控件宽度
     private int width;
     // 刻度盘半径
@@ -47,6 +48,8 @@ public class TempControlView extends View {
     private int temperature = 15;
     // 每格的角度
     private float angleOne = (float) 270 / (maxTemp - minTemp) / angleRate;
+    // 文本提示
+    private String title = "最高温度设置";
 
 
     public TempControlView(Context context) {
@@ -102,7 +105,7 @@ public class TempControlView extends View {
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
         // 控件宽高
-        width = heigh = Math.min(w, h);
+        width = height = Math.min(w, h);
         // 刻度盘半径
         dialRadius = width / 2 - dp2px(20);
         // 圆弧半径
@@ -142,15 +145,54 @@ public class TempControlView extends View {
         }
         // 已经达到的问题
         dialPaint.setColor(Color.parseColor("#E37364"));
+        for (int i = temperature * angleRate; i >= minTemp * angleRate; i--) {
+            canvas.drawLine(0, -dialRadius, 0, -dialRadius + scaleHeigh, dialPaint);
+            canvas.rotate(-angleOne);
+        }
         canvas.restore();
     }
 
+    /**
+     * 绘制刻度盘下的圆弧
+     *
+     * @param canvas
+     */
     private void drawArc(Canvas canvas) {
-
+        canvas.save();
+        canvas.translate(getWidth() / 2, getHeight() / 2);
+        canvas.rotate(135 + 2);
+        RectF rectF = new RectF(-arcRadius, -arcRadius, arcRadius, arcRadius);
+        canvas.drawArc(rectF, 0, 265, false, arcPaint);
+        canvas.restore();
     }
 
+    /**
+     * 绘制标题与温度标识
+     *
+     * @param canvas
+     */
     private void drawText(Canvas canvas) {
+        canvas.save();
+        // 绘制标题
+        float titleWidth = titlePaint.measureText(title);
+        canvas.drawText(title, (width - titleWidth) / 2, dialRadius * 2 + dp2px(15), titlePaint);
 
+        // 绘制最小温度
+        String minTempFlag = "";
+        if (minTemp <= 0) {
+            minTempFlag = minTemp + "";
+        } else {
+            minTempFlag = minTemp < 10 ? "0" + minTemp : minTemp + "";
+        }
+
+        float tempFlagWidth = titlePaint.measureText(maxTemp + "");
+        canvas.rotate(55, width / 2, height / 2);
+        canvas.drawText(minTempFlag, (width - tempFlagWidth) / 2, height + dp2px(5), tempFlagPaint);
+
+        // 绘制最大温度
+        canvas.rotate(-105, width / 2, height / 2);
+        canvas.drawText(maxTemp + "", (width - tempFlagWidth) / 2, height + dp2px(5), tempFlagPaint);
+        canvas.restore();
     }
 
     private void drawButton(Canvas canvas) {

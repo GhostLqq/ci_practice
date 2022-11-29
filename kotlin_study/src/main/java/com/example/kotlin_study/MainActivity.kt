@@ -24,6 +24,13 @@ class MainActivity : AppCompatActivity() {
         val a = 1
         val b: Long? = a.toLong()
 
+        var arrayOf = arrayOf(1, 2, 3)
+        var arrayOfNulls = arrayOfNulls<String>(5)
+
+        val asc = Array(5) { i -> (i * i).toString() }
+        asc.forEach {
+            println(it)
+        }
     }
 
     fun transform(color: String) = when (color) {

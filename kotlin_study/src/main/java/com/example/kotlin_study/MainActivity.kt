@@ -19,18 +19,31 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        println("${maxOf(1, 2)}")
+//        println("${maxOf(1, 2)}")
+//
+//        val a = 1
+//        val b: Long? = a.toLong()
+//
+//        var arrayOf = arrayOf(1, 2, 3)
+//        var arrayOfNulls = arrayOfNulls<String>(5)
+//
+//        val asc = Array(5) { i -> (i * i).toString() }
+//        asc.forEach {
+//            println(it)
+//        }
+//
+//        loop@for ((index, value) in fruits.withIndex()) {
+//            println("$index --- $value")
+//            break@loop
+//        }
 
-        val a = 1
-        val b: Long? = a.toLong()
-
-        var arrayOf = arrayOf(1, 2, 3)
-        var arrayOfNulls = arrayOfNulls<String>(5)
-
-        val asc = Array(5) { i -> (i * i).toString() }
-        asc.forEach {
-            println(it)
+        run loop@{
+            ints.forEach{
+                if(it==3) return@loop
+                Log.i("liuqianqian", "onCreate: $it")
+            }
         }
+        Log.i("liuqianqian", "done with nested loop")
     }
 
     fun transform(color: String) = when (color) {

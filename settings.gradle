@@ -1,6 +1,23 @@
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
+    maven {
+      url 'https://maven.aliyun.com/repository/public'
+    }
+    maven {
+      credentials {
+        username '63d4c061c30a398c5d55807b'
+        password 'nEdA(5E38NK7'
+      }
+      url 'https://packages.aliyun.com/maven/repository/2324905-release-kf2kpB/'
+    }
+    maven {
+      credentials {
+        username '63d4c061c30a398c5d55807b'
+        password 'nEdA(5E38NK7'
+      }
+      url 'https://packages.aliyun.com/maven/repository/2324905-snapshot-MWVD5J/'
+    }
     maven { url 'https://jitpack.io' }
     google()
     mavenCentral()

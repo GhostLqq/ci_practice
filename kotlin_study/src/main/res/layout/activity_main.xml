@@ -16,5 +16,14 @@
         android:text="Jump to ListActivity"
         android:textAllCaps="false" />
 
+    <TextView
+        android:id="@+id/methodActivity"
+        android:layout_width="match_parent"
+        android:padding="10dp"
+        android:gravity="center"
+        android:layout_height="wrap_content"
+        android:text="Jump to MethodActivity"
+        android:textAllCaps="false" />
+
 
 </LinearLayout>

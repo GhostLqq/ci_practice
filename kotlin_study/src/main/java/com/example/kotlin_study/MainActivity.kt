@@ -55,12 +55,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private var listActivity: TextView? = null
+    private var methodActivity: TextView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         listActivity = findViewById(R.id.listActivity)
+        methodActivity = findViewById(R.id.methodActivity)
         initView()
 
 
@@ -87,6 +89,11 @@ class MainActivity : AppCompatActivity() {
     private fun initView() {
         listActivity?.setOnClickListener {
             var intent = Intent(this@MainActivity, ListActivity::class.java)
+            startActivity(intent)
+        }
+
+        methodActivity?.setOnClickListener {
+            var intent = Intent(this@MainActivity, MethodClassActivity::class.java)
             startActivity(intent)
         }
     }

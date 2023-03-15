@@ -1,10 +1,6 @@
 dependencyResolutionManagement {
   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
   repositories {
-    maven { url 'https://jitpack.io' }
-    google()
-    mavenCentral()
-    jcenter()
     maven {
       url 'https://maven.aliyun.com/repository/public'
     }
@@ -22,6 +18,10 @@ dependencyResolutionManagement {
       }
       url 'https://packages.aliyun.com/maven/repository/2324905-snapshot-MWVD5J/'
     }
+    maven { url 'https://jitpack.io' }
+    google()
+    mavenCentral()
+    jcenter() // Warning: this repository is going to shut down soon
   }
 }
 rootProject.name = "My Application"

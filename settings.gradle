@@ -37,3 +37,4 @@ if (hasProperty("isLoadHiltPractice")) {
         include ':hilt_practice'
     }
 }
+include ':gradle_practice'

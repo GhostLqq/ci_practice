@@ -17,10 +17,16 @@ buildscript {
 
 }
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
+//task clean(type: Delete) {
+//    delete rootProject.buildDir
+//}
 
 ext {
     minSdkVersion = 21
 }
+
+//task xxxtask {
+//    doLast{
+//        println "我是xxxtask"
+//    }
+//}

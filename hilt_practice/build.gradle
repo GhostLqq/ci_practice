@@ -5,13 +5,22 @@ plugins {
     id 'dagger.hilt.android.plugin'
 }
 
+def mCompileSdkVersion = 33
+
+// 定义扩展属性
+ext {
+    compileSdkVersion = 33
+}
+
 android {
-    compileSdk 33
+//    compileSdk mCompileSdkVersion
+//    compileSdk this.compileSdkVersion
+    compileSdk rootProject.ext.android.compileSdkVersion
 
     defaultConfig {
         applicationId "com.slcorelibrary.hilt_practice"
-        minSdk 21
-        targetSdk 33
+        minSdk this.rootProject.minSdkVersion
+        targetSdk rootProject.ext.android.targetSdkVersion
         versionCode 1
         versionName "1.0"
 

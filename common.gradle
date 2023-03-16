@@ -1,0 +1,10 @@
+ext {
+    android = [
+            compileSdkVersion: 33,
+            targetSdkVersion : 33,
+    ]
+
+    signConfigs = [
+
+    ]
+}

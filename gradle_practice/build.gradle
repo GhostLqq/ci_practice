@@ -63,13 +63,61 @@ dependencies {
 //}
 
 // 拷贝文件
-copy {
-    from file('read.txt')
-    into getRootDir().absolutePath
+//copy {
+//    from file('read.txt')
+//    into getRootDir().absolutePath
+//}
+
+
+// 直接通过task函数去创建
+// 对task进行配置,在方法参数中进行配置
+//task xxxtask(group: 'imoc', description: 'task study') {
+//    doLast {
+//        println "我是xxxtask"
+//    }
+//}
+
+// 通过task容器去创建
+// 对task进行配置，在方法体内进行配置
+//this.tasks.create(name:'yyytask') {
+//    setGroup('imoc')
+//    description('task study')
+//    doLast {
+//        println "我是yyytask"
+//    }
+//}
+
+
+// doFirst：在某个task执行之前
+// doLast：在某个task执行之后
+//def startBuildTime, endBuildTime
+//this.afterEvaluate { Project project ->
+//    // 保证要找的task已经配置完毕
+//    def preBuildTask = project.tasks.getByName('preBuild')
+//    preBuildTask.doFirst {
+//        startBuildTime = System.currentTimeMillis()
+//        println 'the start time is:' + startBuildTime
+//    }
+//
+//    def buildTask = project.tasks.getByName('build')
+//    buildTask.doLast {
+//        endBuildTime = System.currentTimeMillis()
+//        println "the build time is :${endBuildTime - startBuildTime}"
+//    }
+//}
+
+// task执行顺序
+task taskA {
+    println "taskA start"
+    doFirst {
+        println 'taskA dofirst'
+    }
+    doLast {
+        println 'taskA dolast'
+    }
+    println 'taskA end'
 }
 
-task xxxtask {
-    doLast{
-        println "我是xxxtask"
-    }
+task taskB{
+
 }

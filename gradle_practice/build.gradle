@@ -118,6 +118,25 @@ task taskA {
     println 'taskA end'
 }
 
-task taskB{
+task taskB {
+    println 'taskB start'
+    doFirst {
+        println 'taskB dofirst'
+    }
+    doLast {
+        println 'taskB dolast'
+    }
+    println 'taskB end'
+}
 
+
+task finalTask(dependsOn:[taskB,taskA]){
+    println 'fianlTask start'
+    doFirst {
+        println 'finalTask doFirst'
+    }
+    doLast {
+        println 'finalTask doLast'
+    }
+    println 'finalTask end'
 }

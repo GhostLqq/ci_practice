@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
 }
 
+
 android {
     compileSdk 33
 
@@ -29,10 +30,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
+    sourceSets{
+        main{
+            res.srcDirs = ['/path']
+        }
+    }
 }
 
 dependencies {
-
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'com.google.android.material:material:1.3.0'
@@ -107,36 +113,62 @@ dependencies {
 //}
 
 // task执行顺序
-task taskA {
-    println "taskA start"
-    doFirst {
-        println 'taskA dofirst'
-    }
-    doLast {
-        println 'taskA dolast'
-    }
-    println 'taskA end'
-}
+//task taskA {
+//    println "taskA start"
+//    doFirst {
+//        println 'taskA dofirst'
+//    }
+//    doLast {
+//        println 'taskA dolast'
+//    }
+//    println 'taskA end'
+//}
+//
+//task taskB {
+//    println 'taskB start'
+//    doFirst {
+//        println 'taskB dofirst'
+//    }
+//    doLast {
+//        println 'taskB dolast'
+//    }
+//    println 'taskB end'
+//}
+//
+//
+//task finalTask(dependsOn:[taskB,taskA]){
+//    println 'fianlTask start'
+//    doFirst {
+//        println 'finalTask doFirst'
+//    }
+//    doLast {
+//        println 'finalTask doLast'
+//    }
+//    println 'finalTask end'
+//}
 
-task taskB {
-    println 'taskB start'
-    doFirst {
-        println 'taskB dofirst'
-    }
-    doLast {
-        println 'taskB dolast'
-    }
-    println 'taskB end'
-}
+// task输入和输出
+//task readTask {
+//    // 指定输入文件为上一个task的输出
+//    inputs.file destFile
+//    doLast {
+//        def file = inputs.files.singleFile
+//        println file.text
+//    }
+//}
+//
+//task writeTask {
+//    // 为task指定输入
+//    inputs.properties("versionCode",this.versionCode)
+//    inputs.properties("versionName",this.versionName)
+//    inputs.properties("versionInfo",this.versionInfo)
+//
+//    // 为Task指定输出
+//    outputs.file destFile
+//    doLast {
+//        def data = inputs.getProperties()
+//        File file = outputs.getFiles().getSingleFile()
+//
+//    }
+//}
 
-
-task finalTask(dependsOn:[taskB,taskA]){
-    println 'fianlTask start'
-    doFirst {
-        println 'finalTask doFirst'
-    }
-    doLast {
-        println 'finalTask doLast'
-    }
-    println 'finalTask end'
-}

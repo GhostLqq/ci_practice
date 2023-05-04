@@ -15,6 +15,7 @@ class MainActivity : AppCompatActivity() {
 
         var binding = ActivityMainBinding.inflate(layoutInflater)
 
+
         var viewModel = ViewModelProvider(this)[MainViewModel::class.java]
         var viewModel2 = ViewModelProvider(this)[MainViewModel::class.java]
 

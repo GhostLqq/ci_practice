@@ -1,5 +1,6 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 apply from: this.file('common.gradle')
+apply plugin: GreetingPlugin
 buildscript {
     repositories {
         maven { url 'https://jitpack.io' }
@@ -30,3 +31,15 @@ ext {
 //        println "我是xxxtask"
 //    }
 //}
+
+class GreetingPlugin implements Plugin<Project> {
+    @Override
+    void apply(Project project) {
+        // 新建task hello
+        project.task('hello') {
+            doLast {
+                println 'Hello from the GreetingPlugin'
+            }
+        }
+    }
+}

@@ -18,10 +18,12 @@ class ListActivity : AppCompatActivity() {
     val hashSet = HashSet<String>()
     val hashMap = HashMap<String, String>()
 
+    val friuts = listOf("banana", "avocado", "apple")
+
     // 创建不可变集合
     val list = listOf<Int>(1, 2, 3)
     val set = setOf<Int>(1, 2, 3)
-    val map = mapOf<Int,String>(1 to "zhangsan", 2 to "lisi")
+    val map = mapOf<Int, String>(1 to "zhangsan", 2 to "lisi")
 
     // 创建可变集合
     val mutableList = mutableListOf<Int>(1, 2, 3)
@@ -91,20 +93,63 @@ class ListActivity : AppCompatActivity() {
         map[1]?.let { Log.i(TAG, it) }
         Log.i(TAG, map.getValue(1))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            Log.i(TAG, map.getOrDefault(1,"default"))
+            Log.i(TAG, map.getOrDefault(1, "default"))
         }
-        Log.i(TAG, map.getOrElse(1){
+        Log.i(TAG, map.getOrElse(1) {
             "default"
         })
         // map 的遍历
-        map.forEach{ it ->
+        map.forEach { it ->
             Log.i(TAG, "${it.key}---${it.value}")
         }
-        map.forEach { (key, value ) ->
+        map.forEach { (key, value) ->
             Log.i(TAG, "$key---$value")
         }
         // map 的增删
-        mutableMap+=3 to "haha"
+        mutableMap += 3 to "haha"
         mutableMap[4] = "gaga"
+
+        friuts.filter {
+            it.startsWith("a")
+        }.sortedBy {
+            it
+        }.map {
+            it.uppercase()
+        }.forEach {
+            println(it)
+        }
+
+        val turtle = Turtle()
+        with(turtle) {
+            penDown()
+            for (i in 1..4) {
+                forward(100.0)
+                turn(99.0)
+            }
+            penUp()
+        }
+
+        // 交换两个变量
+        var a = 10
+        var b = 20
+        a = b.also { b = a }
+    }
+}
+
+class Turtle {
+    fun penDown() {
+
+    }
+
+    fun penUp() {
+
+    }
+
+    fun turn(degrees: Double) {
+
+    }
+
+    fun forward(pixels: Double) {
+
     }
 }
